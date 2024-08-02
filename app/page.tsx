@@ -3,27 +3,25 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [users, setUsers] = useState([]);
-  // const [cars, setCars] = useState([]);
+  const [cars, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch(
-        "https://recomotor-back.alexbeje.dev/users",
-        {
-          method: "GET",
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            Accept: "application/json",
-          },
-        }
-      );
-      console.log("👶", response);
+      const response = await fetch("https://recomotor-back.alexbeje.dev/cars");
       const data = await response.json();
       setUsers(data);
     };
     fetchUsers();
   }, []);
 
-  return <div>home</div>;
+  return (
+    <div>
+      {/* <button onClick={updateFavorites}>Update favorites</button> */}
+      <ul>
+        {cars.map((car) => (
+          <li>{car.brand}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
