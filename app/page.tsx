@@ -1,16 +1,28 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [users, setUsers] = useState([]);
+  const [cars, setCars] = useState([]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("https://recomotor-back.alexbeje.dev/users");
-      const data = await response.json();
-      console.log("🖐", data);
-    };
-    fetchData();
+    fetchUsers();
+    fetchCars();
   }, []);
+
+  const fetchUsers = async () => {
+    const response = await fetch("https://recomotor-back.alexbeje.dev/users");
+    const data = await response.json();
+    console.log("🏃‍♀️", data);
+    setUsers(data);
+  };
+
+  const fetchCars = async () => {
+    const response = await fetch("https://recomotor-back.alexbeje.dev/cars");
+    const data = await response.json();
+    setCars(data);
+  };
 
   const updateFavorites = async () => {
     const response = await fetch(
@@ -40,6 +52,16 @@ export default function Home() {
   return (
     <div>
       home
+      <ul>
+        {users.map((user) => (
+          <li>{user.name}</li>
+        ))}
+      </ul>
+      <ul>
+        {cars.map((car) => (
+          <li>{car.brand}</li>
+        ))}
+      </ul>
       <button onClick={updateFavorites}>Update favorites</button>
     </div>
   );
