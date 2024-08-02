@@ -34,11 +34,6 @@ export default function Home() {
               brand: "Seat",
               model: "Leon",
             },
-            {
-              id: 2,
-              brand: "Mercedes-Ben",
-              model: "B Class",
-            },
           ],
         }),
       }
@@ -61,12 +56,12 @@ export default function Home() {
           </ul>
         </div>
       ))}
-      {/* <button
+      <button
         onClick={removeFavorite}
         className="mt-2 p-2 bg-blue-500 text-white"
       >
         Remove favorite
-      </button> */}
+      </button>
     </div>
   );
 }
