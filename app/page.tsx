@@ -19,7 +19,7 @@ export default function Home() {
       {/* <button onClick={updateFavorites}>Update favorites</button> */}
       <ul>
         {cars.map((car) => (
-          <li>{car.brand}</li>
+          <li key={car._id}>{car.brand}</li>
         ))}
       </ul>
     </div>
