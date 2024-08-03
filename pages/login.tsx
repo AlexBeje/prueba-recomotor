@@ -20,7 +20,9 @@ export default function Login() {
 
   /** Methods **/
   const getUsersEmailList = () => {
-    return users?.map((user) => user.email);
+    return users?.map((user) => {
+      return { value: user._id, label: user.email };
+    });
   };
   const getCarImage = () => {
     return cars?.[0].model[2].img;

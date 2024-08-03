@@ -22,6 +22,9 @@ const config: Config = {
         p: ["1rem", { lineHeight: "1.5" }],
         h1: ["2.8rem", { lineHeight: "1" }],
       },
+      borderWidth: {
+        1: "1px",
+      },
     },
   },
   plugins: [],
