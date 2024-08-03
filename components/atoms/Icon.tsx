@@ -12,6 +12,7 @@ export default function Icon({
   rounded,
   selected,
   text,
+  size,
 }: {
   children?: string;
   filled?: boolean;
@@ -19,6 +20,7 @@ export default function Icon({
   rounded?: boolean;
   selected?: boolean;
   text?: string;
+  size?: number;
 }) {
   /** Methods **/
   const getIcon = (icon: string) => {
@@ -45,7 +47,13 @@ export default function Icon({
     >
       {text && <p className="select-none">{text}</p>}
       {children && (
-        <Image priority src={getIcon(children)} alt={`${children} icon`} />
+        <Image
+          priority
+          src={getIcon(children)}
+          alt={`${children} icon`}
+          width={size || 24}
+          height={size || 24}
+        />
       )}
     </div>
   );

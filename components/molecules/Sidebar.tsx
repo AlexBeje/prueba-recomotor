@@ -30,7 +30,7 @@ export default function Sidebar() {
 
   /** Render **/
   return (
-    <div className="flex h-full w-12 flex-col justify-between bg-dark p-2">
+    <div className="flex h-full w-12 flex-col justify-between bg-dark p-2 md:w-16 md:p-4">
       <div className="flex flex-col gap-8">
         <Icon>logo</Icon>
         <div className="flex flex-col gap-4">

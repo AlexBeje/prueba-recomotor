@@ -21,7 +21,7 @@ export default function Login() {
   /** Methods **/
   const getUsersEmailList = () => {
     return users?.map((user) => {
-      return { value: user._id, label: user.email };
+      return { label: user.email, value: user._id };
     });
   };
   const getCarImage = () => {
