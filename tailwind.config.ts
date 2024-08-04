@@ -17,6 +17,7 @@ const config: Config = {
         dark: "#212529",
         light: "#F5F5F5",
         "primary-light": "#3CB462",
+        "primary-dark": "#215732",
       },
       fontSize: {
         p: ["1rem", { lineHeight: "1.5" }],

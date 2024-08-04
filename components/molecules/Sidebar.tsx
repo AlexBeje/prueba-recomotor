@@ -2,6 +2,7 @@ import { useLocalStorage } from "@mantine/hooks";
 import Icon from "../atoms/Icon";
 import { User } from "@/types/users.type";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Sidebar() {
   /** Variables **/
@@ -32,14 +33,20 @@ export default function Sidebar() {
   return (
     <div className="flex h-full w-12 flex-col justify-between bg-dark p-2 md:w-16 md:p-4">
       <div className="flex flex-col gap-8">
-        <Icon>logo</Icon>
+        <Link href="/home">
+          <Icon>logo</Icon>
+        </Link>
         <div className="flex flex-col gap-4">
-          <Icon hover filled selected={isCurrentRoute("/home")}>
-            car
-          </Icon>
-          <Icon hover filled selected={isCurrentRoute("/favorites")}>
-            heart
-          </Icon>
+          <Link href="/home">
+            <Icon hover filled selected={isCurrentRoute("/home")}>
+              car
+            </Icon>
+          </Link>
+          <Link href="/favorites">
+            <Icon hover filled selected={isCurrentRoute("/favorites")}>
+              heart
+            </Icon>
+          </Link>
         </div>
       </div>
       <Icon rounded text={getUserCredentials()} />

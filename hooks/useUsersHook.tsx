@@ -15,15 +15,18 @@ export function useUsersHook() {
   const { patchUserFavorites } = useUsersFetchHook();
 
   /** Methods **/
+  const getCurrentUser = () => {
+    return users?.find((user) => user._id === currentUser);
+  };
   const setUser = (user: User) => {
     setUsers(users?.map((u) => (u._id === user._id ? user : u)));
   };
-  const getUserFavorites = users?.find(
-    (user) => user._id === currentUser,
-  )?.favorites;
+  const getUserFavorites = () => {
+    return users?.find((user) => user._id === currentUser)?.favorites;
+  };
   const addFavorite = async (brand: string, model: string) => {
     const favorites: Favorite[] | undefined = JSON.parse(
-      JSON.stringify(getUserFavorites),
+      JSON.stringify(getUserFavorites()),
     );
     const payload = [
       ...(favorites || []),
@@ -37,15 +40,16 @@ export function useUsersHook() {
   };
   const removeFavorite = async (brand: string, model: string) => {
     const favorites: Favorite[] | undefined = JSON.parse(
-      JSON.stringify(getUserFavorites),
+      JSON.stringify(getUserFavorites()),
     );
-    const payload = favorites?.filter(
-      (favorite) => favorite.brand !== brand || favorite.model !== model,
-    ) || [];
+    const payload =
+      favorites?.filter(
+        (favorite) => favorite.brand !== brand || favorite.model !== model,
+      ) || [];
     const resp = await patchUserFavorites(payload);
     setUser(resp);
   };
 
   /** Return **/
-  return { getUserFavorites, addFavorite, removeFavorite };
+  return { getCurrentUser, getUserFavorites, addFavorite, removeFavorite };
 }
