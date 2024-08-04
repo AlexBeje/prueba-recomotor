@@ -48,7 +48,7 @@ export default function Carousel({
         className="relative h-[250px] md:h-[500px]"
       >
         <div
-          className="absolute right-8 top-8 z-10"
+          className="absolute right-4 top-4 md:right-8 md:top-8 z-10"
           onClick={() => handleFavoriteClick(carModel.brand, carModel.model)}
         >
           {loading?.brand === carModel.brand &&
@@ -73,9 +73,9 @@ export default function Carousel({
           width={"100%"}
           height={"100%"}
         />
-        <p className="absolute bottom-16 left-8 z-10 text-h1 font-bold text-light">
+        <h1 className="absolute bottom-16 left-8 z-10 text-h2 md:text-h1 font-bold text-light">
           {carModel.brand} {carModel.model}
-        </p>
+        </h1>
       </MantineCarousel.Slide>
     ));
   };

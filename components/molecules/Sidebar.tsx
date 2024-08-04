@@ -1,12 +1,14 @@
-import { useLocalStorage } from "@mantine/hooks";
+import { useClickOutside, useLocalStorage } from "@mantine/hooks";
 import Icon from "../atoms/Icon";
 import { User } from "@/types/users.type";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Sidebar() {
   /** Variables **/
   const router = useRouter();
+  const [logout, setLogout] = useState<boolean>();
   const [currentUser] = useLocalStorage<string>({
     key: "currentUser",
   });
@@ -28,6 +30,10 @@ export default function Sidebar() {
   const isCurrentRoute = (route: string) => {
     return router.pathname === route;
   };
+  const toggleLogout = () => {
+    setLogout(!logout);
+  };
+  const logoutDialogRef = useClickOutside(() => setLogout(false));
 
   /** Render **/
   return (
@@ -49,7 +55,23 @@ export default function Sidebar() {
           </Link>
         </div>
       </div>
-      <Icon rounded text={getUserCredentials()} />
+      <div
+        className="relative"
+        onClick={() => toggleLogout()}
+        ref={logoutDialogRef}
+      >
+        <Icon rounded text={getUserCredentials()} />
+        {logout && (
+          <Link
+            href="/"
+            className="text-p font-semibold text-dark no-underline"
+          >
+            <div className="absolute -top-1 left-10 z-10 rounded bg-primary-light px-4 py-2 drop-shadow-[0_4px_4px_rgba(0,0,0,.25)] hover:bg-light">
+              Logout
+            </div>
+          </Link>
+        )}
+      </div>
     </div>
   );
 }

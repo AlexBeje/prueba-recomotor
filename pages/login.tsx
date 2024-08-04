@@ -39,18 +39,22 @@ export default function Login() {
   return (
     <div className="relative flex h-screen w-screen">
       <div className="absolute hidden h-full w-1/2 bg-black opacity-50 md:block" />
-      <img
-        className="hidden object-cover md:block"
-        src={getCarImage()}
-        alt="Car picture"
-        width={"50%"}
-      />
+      {getCarImage() ? (
+        <img
+          className="hidden object-cover md:block"
+          src={getCarImage()}
+          alt="Car picture"
+          width={"50%"}
+        />
+      ) : (
+        <div className="bg-dark w-1/2" />
+      )}
       <div className="flex w-full flex-col justify-center gap-6 bg-dark px-10 text-light md:w-1/2 md:px-20">
         <h1 className="text-h1">Welcome!</h1>
         <div className="flex flex-col gap-2">
           <p>
             Please
-            <span className="text-p px-1 font-bold text-primary-light">
+            <span className="px-1 text-p font-bold text-primary-light">
               identify
             </span>
             yourself to enter the website.
