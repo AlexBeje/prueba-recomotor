@@ -42,7 +42,7 @@ export default function Favorites() {
             <span className="font-bold text-primary-dark">
               {currentUser?.name}
             </span>
-            's favorite cars
+            &apos;s favorite cars
           </h1>
           <div className="mb-4 ml-4 flex flex-col gap-4 text-light">
             {getFavoriteCars()?.length === 0 && (
