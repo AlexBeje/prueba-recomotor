@@ -1,6 +1,6 @@
-import { Image } from "@mantine/core";
-import { Loader } from "@mantine/core";
 import Icon from "../atoms/Icon";
+import Loader from "../atoms/Loader";
+import { Image } from "@mantine/core";
 
 export default function Card({
   children,
@@ -22,25 +22,22 @@ export default function Card({
   };
   onFavoriteClick?: (brand: string, model: string) => void;
 }) {
+  /** Methods **/
   const handleFavoriteClick = (brand: string, model: string) => {
     if (onFavoriteClick) {
       return onFavoriteClick(brand, model);
     }
   };
+
+  /** Render **/
   return (
     <div className="relative flex w-full flex-col">
       <div
-        className="absolute right-4 top-4" 
+        className="absolute right-4 top-4"
         onClick={() => handleFavoriteClick(brand, model)}
       >
         {loading?.brand === brand && loading?.model === model ? (
-          <div
-            className={`flex h-8 w-8 items-center justify-center rounded-full ${
-              favorite ? "bg-light" : "bg-primary-light"
-            }`}
-          >
-            <Loader color="#212529" size="xs" />
-          </div>
+          <Loader favorite={favorite} />
         ) : (
           <Icon hover rounded size={16} selected={favorite}>
             heart

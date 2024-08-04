@@ -4,6 +4,7 @@ import Heart from "@/assets/icons/heart.svg";
 import Logo from "@/assets/icons/logo.svg";
 import Photo from "@/assets/icons/photo.svg";
 import Searcher from "@/assets/icons/searcher.svg";
+import { Loader } from "@mantine/core";
 
 export default function Icon({
   children,
@@ -13,6 +14,7 @@ export default function Icon({
   selected,
   text,
   size,
+  loading,
   onClick,
 }: {
   children?: string;
@@ -22,6 +24,7 @@ export default function Icon({
   selected?: boolean;
   text?: string;
   size?: number;
+  loading?: boolean;
   onClick?: () => void;
 }) {
   /** Methods **/
@@ -53,15 +56,21 @@ export default function Icon({
       className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded ${filled && "bg-light"} ${rounded && "rounded-full bg-light"} ${selected && "bg-primary-light"} ${hover && "hover:border-1 hover:border-solid hover:border-primary-light"}`}
     >
       {text && <p className="select-none">{text}</p>}
-      {children && (
-        <Image
-          priority
-          src={getIcon(children)}
-          alt={`${children} icon`}
-          width={size || 24}
-          height={size || 24}
-          onClick={() => handleOnClick()}
-        />
+      {loading ? (
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-light">
+          <Loader color="#212529" size="xs" />
+        </div>
+      ) : (
+        children && (
+          <Image
+            priority
+            src={getIcon(children)}
+            alt={`${children} icon`}
+            width={size || 24}
+            height={size || 24}
+            onClick={() => handleOnClick()}
+          />
+        )
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-interface FavoriteCar {
+export interface Favorite {
   brand: string;
   model: string;
 }
@@ -8,5 +8,5 @@ export interface User {
   name: string;
   surname: string;
   email: string;
-  favorites: FavoriteCar[];
+  favorites: Favorite[];
 }
