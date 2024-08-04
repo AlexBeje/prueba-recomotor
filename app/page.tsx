@@ -20,6 +20,8 @@ export default function Home() {
 
   /** Lifecycles **/
   useEffect(() => {
+    setUsers([]);
+    setCars([]);
     fetchUsers();
     fetchCars();
   }, []);

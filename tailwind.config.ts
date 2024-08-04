@@ -21,6 +21,7 @@ const config: Config = {
       fontSize: {
         p: ["1rem", { lineHeight: "1.5" }],
         h1: ["2.8rem", { lineHeight: "1" }],
+        h2: ["1.3rem", { lineHeight: "1" }],
       },
       borderWidth: {
         1: "1px",

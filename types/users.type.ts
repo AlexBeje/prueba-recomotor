@@ -1,5 +1,4 @@
 interface FavoriteCar {
-  id: number;
   brand: string;
   model: string;
 }

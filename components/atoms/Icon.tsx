@@ -13,6 +13,7 @@ export default function Icon({
   selected,
   text,
   size,
+  onClick,
 }: {
   children?: string;
   filled?: boolean;
@@ -21,6 +22,7 @@ export default function Icon({
   selected?: boolean;
   text?: string;
   size?: number;
+  onClick?: () => void;
 }) {
   /** Methods **/
   const getIcon = (icon: string) => {
@@ -39,6 +41,11 @@ export default function Icon({
         return Logo;
     }
   };
+  const handleOnClick = () => {
+    if (onClick) {
+      return onClick();
+    }
+  };
 
   /** Render **/
   return (
@@ -53,6 +60,7 @@ export default function Icon({
           alt={`${children} icon`}
           width={size || 24}
           height={size || 24}
+          onClick={() => handleOnClick()}
         />
       )}
     </div>
